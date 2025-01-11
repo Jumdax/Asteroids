@@ -1,6 +1,7 @@
-# Import pygame and constants
 import pygame
-from constants import *
+from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+from player import Player
+
 
 def main():
     # Initialize pygame
@@ -9,6 +10,13 @@ def main():
     # Create a GUI window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # Create a Clock object and initialize dt
+    clock = pygame.time.Clock()
+    dt = 0
+
+    # Instantiate the player in the middle of the screen
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+
     # Game loop
     while True:
         # Handle events
@@ -16,14 +24,19 @@ def main():
             if event.type == pygame.QUIT:
                 return  # Exit the game loop and terminate the program
 
-        # Fill the screen with black
-        screen.fill((0, 0, 0))  # RGB color for black
+        # Update game objects (if necessary)
+        player.update(dt)
 
-        # Refresh the screen
-        pygame.display.flip()
+        # Draw game objects
+        screen.fill((0, 0, 0))  # Fill screen with black
+        player.draw(screen)  # Draw the player
+        pygame.display.flip()  # Refresh the screen
 
-    # Quit pygame (this will be executed after exiting the loop)
+        # Control the frame rate and calculate delta time
+        dt = clock.tick(60) / 1000  # Tick returns milliseconds; convert to seconds
+
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()
