@@ -11,3 +11,4 @@ PLAYER_TURN_SPEED = 300  # degrees per second
 PLAYER_SPEED = 200 # player speed while moving
 SHOT_RADIUS = 5 # radius of a bullet
 PLAYER_SHOOT_SPEED = 500 # Bullet Speed
+PLAYER_SHOOT_COOLDOWN = 0.3 # Fire rate Cooldown in seconds
