@@ -43,6 +43,13 @@ def main():
         for obj in updatable:
             obj.update(dt)
         
+        # Collision detection: bullets and asteroids
+        for asteroid in asteroids:
+            for shot in shots:
+                if asteroid.collides_with(shot):
+                    asteroid.kill()  # Remove the asteroid
+                    shot.kill()      # Remove the bullet
+                    
         # Check for collisions between player and asteroids
         for asteroid in asteroids:
             if player.collides_with(asteroid):
