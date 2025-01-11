@@ -8,3 +8,4 @@ ASTEROID_MAX_RADIUS = ASTEROID_MIN_RADIUS * ASTEROID_KINDS
 
 PLAYER_RADIUS = 20 # Size of Players Ship
 PLAYER_TURN_SPEED = 300  # degrees per second
+PLAYER_SPEED = 200 # player speed while moving

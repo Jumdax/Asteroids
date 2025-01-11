@@ -10,6 +10,13 @@ def main():
     # Create a GUI window
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+    # Create groups for updatable and drawable objects
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    # Add Player class to both groups
+    Player.containers = (updatable, drawable)
+
     # Create a Clock object and initialize dt
     clock = pygame.time.Clock()
     dt = 0
@@ -24,12 +31,14 @@ def main():
             if event.type == pygame.QUIT:
                 return  # Exit the game loop and terminate the program
 
-        # Update game objects (if necessary)
-        player.update(dt)
+        # Update all objects in the updatable group
+        for obj in updatable:
+            obj.update(dt)
 
-        # Draw game objects
+        # Draw all objects in the drawable group
         screen.fill((0, 0, 0))  # Fill screen with black
-        player.draw(screen)  # Draw the player
+        for obj in drawable:
+            obj.draw(screen)
         pygame.display.flip()  # Refresh the screen
 
         # Control the frame rate and calculate delta time
